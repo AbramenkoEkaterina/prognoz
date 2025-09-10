@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Прогноз погоды</title>
+  <link rel="icon" type="image/png" href="./images/favicon.png" />
+  <link rel="stylesheet" href="./styles/globals.css" />
+  <link rel="stylesheet" href="./styles/variables.css" />
+  <link rel="stylesheet" href="./styles/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="index.js" defer></script>
+</head>
+
+<body>
+  <main class="app">
+    <div class="weather">
+      <div class="date_time_ geo visual">
+        <div id="date"></div>
+        <div id="time"></div>
+        <div id="location">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" style="margin-right:5px; vertical-align:middle;">
+            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
+            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
+          </svg>
+          <span id="city-data"></span>
+        </div>
+      </div>
+      <div class="mini_weather visual">
+        <div id="weather_icon" class="icon default"></div>
+        <div id="weather_adviсe"></div>
+        <div id="weather_temp"></div>
+        <div id="weather_feels_like"></div>
+        <div id="weather_description"></div>
+      </div>
+    </div>
+    </div>
+    <div class="description">
+      <p>здесь будет погода на несколько дней и описание</p>
+    </div>
+
+  </main>
+  <footer>
+    <div class="shine-bar">@2025 Abramenko Ekaterina</div>
+  </footer>
+</body>
+
+</html>

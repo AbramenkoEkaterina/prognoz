@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="128" height="128" role="img" aria-label="Fog">
+  <path d="M12 26h40a6 6 0 0 0 0-12 10 10 0 0 0-18-2 8 8 0 0 0-6 14z" fill="#CFD8DC"/>
+  <g stroke="#B0BEC5" stroke-width="3" stroke-linecap="round">
+    <line x1="12" y1="40" x2="52" y2="40"/>
+    <line x1="8" y1="48" x2="56" y2="48"/>
+  </g>
+</svg>

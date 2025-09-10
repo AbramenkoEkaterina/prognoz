@@ -1,0 +1,187 @@
+body {
+  min-inline-size: 320px;
+  margin: 0;
+  font-family: sans-serif;
+  background: linear-gradient(
+    90deg,
+    #080b1c,
+    #3c409a,
+    #8b8ba7,
+    #3b3f94,
+    #080b1c
+  );
+  background: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  height: 100vh;        /* 👈 занимает всю высоту экрана */
+    display: flex;        /* чтобы контент внутри выровнять */
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+.weather {
+  margin-top: 50px;            /* убираем лишние отступы */
+  color: white;
+  display: flex;        /* чтобы контент внутри выровнять */
+  gap: 50px;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.description {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  border-radius: 20px;
+  color: white;
+  margin: 10px;
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.date_time_.geo,
+.mini_weather {
+
+  background-color: rgba(0, 0, 0, 0.4); /* чёрный с прозрачностью */
+  color: #fff;                          /* текст остаётся читаемым */
+  padding: 10px 15px;                   /* отступы внутри */
+  border-radius: 10px;                  /* скруглённые углы */
+  display: inline-block;                /* чтобы фон обтекал текст */
+  text-align: center;   /* выравнивание текста */
+}
+
+footer {
+  width: 100%;          /* на всю ширину */
+}
+
+.shine-bar {
+  position: relative;
+  width: 100%;          /* растянуть на всю ширину */
+  text-align: center;   /* выровнять текст по центру */
+  padding: 10px 0;      /* чуть больше вертикальных отступов */
+  font-family: "Arial Black", sans-serif;
+  font-size: 18px;
+  text-transform: uppercase;
+  border-radius: 0;     /* убираем скругление, если нужна прямая полоса */
+  overflow: hidden;
+  color: #000;
+  background: linear-gradient(
+    135deg,
+    #d9d9d9,
+    #f0f0f0,
+    #bfbfbf,
+    #e6e6e6,
+    #a6a6a6
+  );
+  background-size: 400% 400%;
+  box-shadow: 0 5px 25px rgba(255, 255, 255, 0.3),
+              inset 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+    /* Сам блик */
+    .shine-bar::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -30%;
+      width: 50%;
+      height: 200%;
+      background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.8) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: skewX(-20deg);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0%   { left: -50%; }
+      100% { left: 120%; }
+    }
+
+    /*-----------------------------------------------------*/
+
+/*ясно*/
+.clear {
+  background-image: url("../svg/sun.svg");
+}
+
+/*гроза*/
+.thunderstorm {
+  background-image: url("../svg/thunder.svg");
+}
+
+/*морозь*/
+.drizzle {
+  background-image: url("../svg/drizzle.svg");
+}
+
+/*дождь*/
+.rain {
+  background-image: url("../svg/rain.svg");
+}
+
+/*снег*/
+.snow {
+  background-image: url("../svg/snow.svg");
+}
+
+/*дымка*/
+.mist {
+  background-image: url("../svg/fog.svg");
+}
+
+/*смог*/
+.smoke {
+  background-image: url("../svg/fog.svg");
+}
+
+/*туман*/
+.fog {
+  background-image: url("../svg/fog.svg");
+}
+
+/*песок*/
+.sunny {
+  background-image: url("../svg/sun.svg");
+}
+
+/*шквал*/
+.squall {
+  background-image: url("../svg/wind.svg");
+}
+
+/*облачно*/
+.clouds {
+  background-image: url("../svg/partly_cloudy.svg");
+}
+
+/*торнадо*/
+.tornado {
+  background-image: url("../svg/wind.svg");
+}
+
+/*град*/
+.hail {
+  background-image: url("../svg/hail.svg");
+}
+
+.default {
+  background-image: url("../svg/cloud.svg");
+}
