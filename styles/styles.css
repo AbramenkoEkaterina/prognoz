@@ -25,13 +25,14 @@ body {
 .app {
   display: flex;
   flex-direction: column;
+  gap: 25px;
 }
 
 .weather {
-  margin-top: 50px;            /* убираем лишние отступы */
+  margin-top: 30px;            /* убираем лишние отступы */
   color: white;
   display: flex;        /* чтобы контент внутри выровнять */
-  gap: 50px;
+  gap: 10px;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -186,4 +187,45 @@ footer {
   background-image: url("../svg/cloud.svg");
 }
 
+/* для погоды на 5 дней*/
+/* Десктопная сетка */
+.forecast {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
 
+.forecast-day {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+}
+
+/* последний элемент занимает всю ширину */
+.forecast-day:last-child {
+  grid-column: span 2;
+}
+
+/* 📱 На мобилке включаем свайп: показываем только 2 прогноза */
+@media (max-width: 768px) {
+  .forecast {
+    display: flex;
+    flex-direction: column; /* колонки сверху вниз */
+    gap: 10px;              /* расстояние между карточками */
+    width: 100%;
+    overflow: hidden;       /* скрываем остальные карточки */
+  }
+
+  .forecast-day {
+    width: 100%;            /* каждая карточка на всю ширину */
+    display: flex;
+    flex-direction: column; /* контент внутри карточки вертикально */
+    justify-content: flex-start;
+  }
+
+  .forecast-day:last-child {
+    grid-column: auto; /* отключаем span */
+  }
+}
