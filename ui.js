@@ -121,40 +121,40 @@ export function renderForecast(data) {
   }
 }
 
-// Обновление позиции контейнера для свайпа
-// Обновление позиции контейнера
-function updateForecastPosition() {
-  const container = document.getElementById("forecast");
-  const dayHeight = container.querySelector(".forecast-day").offsetHeight;
-  const offset = dayHeight * 2 * currentPage; // 2 карточки на страницу
-  container.style.transform = `translateX(-${currentPage * container.offsetWidth}px)`; // горизонтально
-  container.style.transition = "transform 0.3s ease-in-out";
+// // Обновление позиции контейнера для свайпа
+// // Обновление позиции контейнера
+// function updateForecastPosition() {
+//   const container = document.getElementById("forecast");
+//   const dayHeight = container.querySelector(".forecast-day").offsetHeight;
+//   const offset = dayHeight * 2 * currentPage; // 2 карточки на страницу
+//   container.style.transform = `translateX(-${currentPage * container.offsetWidth}px)`; // горизонтально
+//   container.style.transition = "transform 0.3s ease-in-out";
 
-  // скрываем карточки не текущей страницы (для вертикальной колонки)
-  const allCards = container.querySelectorAll(".forecast-day");
-  allCards.forEach((card, index) => {
-    const pageIndex = Math.floor(index / 2);
-    card.style.display = pageIndex === currentPage ? "flex" : "none";
-  });
-}
+//   // скрываем карточки не текущей страницы (для вертикальной колонки)
+//   const allCards = container.querySelectorAll(".forecast-day");
+//   allCards.forEach((card, index) => {
+//     const pageIndex = Math.floor(index / 2);
+//     card.style.display = pageIndex === currentPage ? "flex" : "none";
+//   });
+// }
 
-// Свайп для мобильной версии
-function addSwipeEvents(container) {
-  let startX = 0;
-  let endX = 0;
+// // Свайп для мобильной версии
+// function addSwipeEvents(container) {
+//   let startX = 0;
+//   let endX = 0;
 
-  container.addEventListener("touchstart", (e) => { startX = e.changedTouches[0].screenX; });
-  container.addEventListener("touchend", (e) => {
-    endX = e.changedTouches[0].screenX;
-    handleSwipe();
-  });
+//   container.addEventListener("touchstart", (e) => { startX = e.changedTouches[0].screenX; });
+//   container.addEventListener("touchend", (e) => {
+//     endX = e.changedTouches[0].screenX;
+//     handleSwipe();
+//   });
 
-  function handleSwipe() {
-    const diff = endX - startX;
-    if (Math.abs(diff) > 50) {
-      if (diff < 0 && currentPage < totalPages - 1) currentPage++;
-      else if (diff > 0 && currentPage > 0) currentPage--;
-      updateForecastPosition();
-    }
-  }
-}
+//   function handleSwipe() {
+//     const diff = endX - startX;
+//     if (Math.abs(diff) > 50) {
+//       if (diff < 0 && currentPage < totalPages - 1) currentPage++;
+//       else if (diff > 0 && currentPage > 0) currentPage--;
+//       updateForecastPosition();
+//     }
+//   }
+// }

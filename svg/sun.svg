@@ -1,5 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="128" height="128" role="img" aria-label="Sun">
-  <circle cx="32" cy="32" r="12" fill="#FFC107"/>
+  <!-- Солнце -->
+  <circle cx="32" cy="32" r="12" fill="#FFC107">
+    <!-- Пульсация -->
+    <animate attributeName="r" values="12;14;12" dur="2s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Лучи -->
   <g stroke="#FFC107" stroke-width="3" stroke-linecap="round">
     <line x1="32" y1="4" x2="32" y2="14"/>
     <line x1="32" y1="50" x2="32" y2="60"/>
@@ -9,5 +15,15 @@
     <line x1="46" y1="46" x2="54" y2="54"/>
     <line x1="10" y1="54" x2="18" y2="46"/>
     <line x1="46" y1="18" x2="54" y2="10"/>
+    
+    <!-- Вращение всей группы -->
+    <animateTransform 
+      attributeName="transform" 
+      attributeType="XML" 
+      type="rotate" 
+      from="0 32 32" 
+      to="360 32 32" 
+      dur="10s" 
+      repeatCount="indefinite"/>
   </g>
 </svg>

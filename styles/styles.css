@@ -187,6 +187,10 @@ footer {
   background-image: url("../svg/cloud.svg");
 }
 
+.moon {
+  background-image: url("../svg/moon.svg");
+}
+
 /* для погоды на 5 дней*/
 /* Десктопная сетка */
 .forecast {
