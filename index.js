@@ -176,3 +176,30 @@ getCoords()
     console.error(err);
     alert(err);
   });
+
+  /*модально окно*/
+  
+  const modal = document.getElementById('weatherModal');
+  const btncloseModal = document.getElementById('closeModal');
+  const moreDetails = document.querySelector('.mini_weather')
+  console.log(moreDetails)
+
+  //функция открытия
+  function openModal() {
+  modal.style.display = 'block';
+  }
+
+  //закрытие
+  function closeModal() {
+    modal.style.display = 'none';
+  }
+
+  //обработка событитя 
+  moreDetails.addEventListener('click', openModal);
+  window.addEventListener('click', function(event) {
+    if (event.target == modal) {
+      closeModal();
+    }
+  })
+  
+  

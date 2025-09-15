@@ -47,7 +47,7 @@
       <!-- Текущая погода -->
       <div class="mini_weather visual">
         <div id="weather_icon" class="icon default"></div>
-        <div id="weather_adviсe"></div>
+        <div id="weather_advice"></div>
         <div id="weather_temp"></div>
         <div id="weather_feels_like"></div>
         <div id="weather_description"></div>
@@ -64,5 +64,16 @@
   <footer>
     <div class="shine-bar">@2025 Abramenko Ekaterina</div>
   </footer>
+
+  <!-- Модальное окно -->
+<div id="weatherModal" class="modal">
+  <div class="modal-content">
+    <span id="btncloseModal" class="close">&times;</span>
+
+    <h2>Подробный прогноз</h2>
+    <div id="modal-details"></div> <!-- сюда JS будет вставлять данные -->
+  </div>
+</div>
+
 </body>
 </html>

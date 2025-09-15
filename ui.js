@@ -3,6 +3,7 @@
 // Универсальная функция для установки иконки
 export function setWeatherIcon(main, element = null) {
   const iconEl = element || document.getElementById("weather_icon");
+  if (!iconEl) return; // защита от null
   iconEl.className = "icon"; // сброс классов
 
   const iconMap = {
@@ -27,6 +28,36 @@ export function setWeatherIcon(main, element = null) {
   iconEl.classList.add(iconClass);
 }
 
+// Функция для совета по одежде
+function getClothingAdvice(temp, condition) {
+  let advice = "";
+
+  if (temp <= -10) {
+    advice = "Очень холодно 🥶 — тёплая куртка, шарф, шапка и перчатки!";
+  } else if (temp <= 0) {
+    advice = "Холодно ❄️ — куртка и шапка будут в самый раз.";
+  } else if (temp <= 10) {
+    advice = "Прохладно 🌥 — надень лёгкую куртку или толстовку.";
+  } else if (temp <= 20) {
+    advice = "Комфортно 🙂 — достаточно кофты или рубашки.";
+  } else if (temp <= 25) {
+    advice = "Тепло ☀️ — футболка и лёгкие штаны подойдут.";
+  } else {
+    advice = "Жарко 🥵 — шорты, кепка и вода!";
+  }
+
+  // добавляем учёт погоды
+  if (condition === "Rain" || condition === "Drizzle" || condition === "Thunderstorm") {
+    advice += " Не забудь зонт ☔.";
+  } else if (condition === "Snow") {
+    advice += " Обязательно перчатки и тёплая обувь 🧤.";
+  } else if (condition === "Mist" || condition === "Fog" || condition === "Haze") {
+    advice += " Будь внимателен на улице, видимость плохая 👀.";
+  }
+
+  return advice;
+}
+
 
 // Текущая погода
 export function renderCurrentWeather(data) {
@@ -48,17 +79,19 @@ export function renderCurrentWeather(data) {
   document.getElementById("weather_feels_like").textContent = `Ощущается как: ${Math.round(data.main.feels_like)}°C`;
   document.getElementById("weather_description").textContent = data.weather[0].description;
 
+  // ставим иконку
   setWeatherIcon(data.weather[0].main);
+
+  // совет по одежде 👇
+  const advice = getClothingAdvice(Math.round(data.main.temp), data.weather[0].main);
+  document.getElementById("weather_advice").textContent = advice;
 }
 
-// Пагинация для мобильного свайпа
-let currentPage = 0;
-let totalPages = 0;
 
 // Отображение прогноза на 5 дней
 export function renderForecast(data) {
   const daily = data.list
-    .filter((item) => item.dt_txt.includes("12:00:00"))
+    .filter((item) => item.dt_txt.endsWith("12:00:00"))
     .slice(0, 5);
 
   const container = document.getElementById("forecast");
@@ -103,58 +136,6 @@ export function renderForecast(data) {
 
     container.appendChild(dayEl);
   });
-
-// Мобильная версия: свайп по 2 карточки в колонку
-  if (window.innerWidth <= 768) {
-    totalPages = Math.ceil(daily.length / 2); // 2 карточки на страницу
-    currentPage = 0;
-    updateForecastPosition();
-    addSwipeEvents(container);
-    window.addEventListener("resize", () => {
-      // при изменении ширины сбрасываем позицию
-      currentPage = 0;
-      updateForecastPosition();
-    });
-  } else {
-    // сбрасываем трансформацию на десктопе
-    container.style.transform = "none";
-  }
 }
 
-// // Обновление позиции контейнера для свайпа
-// // Обновление позиции контейнера
-// function updateForecastPosition() {
-//   const container = document.getElementById("forecast");
-//   const dayHeight = container.querySelector(".forecast-day").offsetHeight;
-//   const offset = dayHeight * 2 * currentPage; // 2 карточки на страницу
-//   container.style.transform = `translateX(-${currentPage * container.offsetWidth}px)`; // горизонтально
-//   container.style.transition = "transform 0.3s ease-in-out";
 
-//   // скрываем карточки не текущей страницы (для вертикальной колонки)
-//   const allCards = container.querySelectorAll(".forecast-day");
-//   allCards.forEach((card, index) => {
-//     const pageIndex = Math.floor(index / 2);
-//     card.style.display = pageIndex === currentPage ? "flex" : "none";
-//   });
-// }
-
-// // Свайп для мобильной версии
-// function addSwipeEvents(container) {
-//   let startX = 0;
-//   let endX = 0;
-
-//   container.addEventListener("touchstart", (e) => { startX = e.changedTouches[0].screenX; });
-//   container.addEventListener("touchend", (e) => {
-//     endX = e.changedTouches[0].screenX;
-//     handleSwipe();
-//   });
-
-//   function handleSwipe() {
-//     const diff = endX - startX;
-//     if (Math.abs(diff) > 50) {
-//       if (diff < 0 && currentPage < totalPages - 1) currentPage++;
-//       else if (diff > 0 && currentPage > 0) currentPage--;
-//       updateForecastPosition();
-//     }
-//   }
-// }
