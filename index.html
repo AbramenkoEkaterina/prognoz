@@ -65,15 +65,23 @@
     <div class="shine-bar">@2025 Abramenko Ekaterina</div>
   </footer>
 
-  <!-- Модальное окно -->
+<!-- Модальное окно -->
 <div id="weatherModal" class="modal">
   <div class="modal-content">
-    <span id="btncloseModal" class="close">&times;</span>
+    <span id="closeModal" class="close">&times;</span>
+    <h2>Подробная информация</h2>
 
-    <h2>Подробный прогноз</h2>
-    <div id="modal-details"></div> <!-- сюда JS будет вставлять данные -->
+    <div class="modal-section">
+      <p><strong>Температура:</strong> <span id="modal-temp"></span></p>
+      <p><strong>Ощущается как:</strong> <span id="modal-feels"></span></p>
+      <p><strong>Ветер:</strong> <span id="modal-wind"></span></p>
+      <p><strong>Влажность:</strong> <span id="modal-humidity"></span></p>
+      <p><strong>Давление:</strong> <span id="modal-pressure"></span></p>
+    </div>
+
+    <h3>Почасовой прогноз</h3>
+    <div id="modal-hourly" class="hourly"></div>
   </div>
 </div>
-
 </body>
 </html>

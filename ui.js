@@ -61,6 +61,7 @@ function getClothingAdvice(temp, condition) {
 
 // Текущая погода
 export function renderCurrentWeather(data) {
+  window.currentWeather = data;
   const now = new Date();
   const formattedDate = now.toLocaleDateString("ru-RU", {
     day: "2-digit",
@@ -90,6 +91,7 @@ export function renderCurrentWeather(data) {
 
 // Отображение прогноза на 5 дней
 export function renderForecast(data) {
+  window.forecastData = data;
   const daily = data.list
     .filter((item) => item.dt_txt.endsWith("12:00:00"))
     .slice(0, 5);
