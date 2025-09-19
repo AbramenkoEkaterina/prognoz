@@ -1,34 +1,55 @@
-//обновление DOM (отрисовка)
+// ================================
+// обновление DOM (отрисовка)
+// ================================
 
 // Универсальная функция для установки иконки
-export function setWeatherIcon(main, element = null) {
+export function setWeatherIcon(main, element = null, data = null) {
   const iconEl = element || document.getElementById("weather_icon");
   if (!iconEl) return; // защита от null
   iconEl.className = "icon"; // сброс классов
 
   const iconMap = {
-  Clear: "clear",
-  Clouds: "clouds",
-  Rain: "rain",
-  Snow: "snow",
-  Thunderstorm: "thunderstorm",
-  Drizzle: "drizzle",
-  Mist: "mist",
-  Fog: "fog",
-  Haze: "mist", // можешь оставить mist
-  Smoke: "smoke",
-  Dust: "mist", // или завести отдельный класс
-  Sand: "sunny",
-  Ash: "mist", // или завести .ash
-  Squall: "squall",
-  Tornado: "tornado",
-};
+    Clear: "clear",
+    Clouds: "clouds",
+    Rain: "rain",
+    Snow: "snow",
+    Thunderstorm: "thunderstorm",
+    Drizzle: "drizzle",
+    Mist: "mist",
+    Fog: "fog",
+    Haze: "mist", // можешь оставить mist
+    Smoke: "smoke",
+    Dust: "mist",
+    Sand: "sunny",
+    Ash: "mist",
+    Squall: "squall",
+    Tornado: "tornado",
+  };
 
-  const iconClass = iconMap[main] || "default";
+  let iconClass = iconMap[main] || "default";
+
+ // 🌙 проверка времени для всех состояний (если есть sys)
+  if (data?.sys) {
+    const nowUTC = Date.now() + new Date().getTimezoneOffset() * 60000;
+    const cityTime = nowUTC + data.timezone * 1000;
+
+    const sunrise = data.sys.sunrise * 1000;
+    const sunset = data.sys.sunset * 1000;
+
+    // если ночь и погода либо Clear, либо Clouds
+    if (cityTime < sunrise || cityTime > sunset) {
+      if (main === "Clear" || main === "Clouds") {
+        iconClass = "moon";
+      }
+    }
+  }
+
   iconEl.classList.add(iconClass);
 }
 
+// ================================
 // Функция для совета по одежде
+// ================================
 function getClothingAdvice(temp, condition) {
   let advice = "";
 
@@ -46,7 +67,6 @@ function getClothingAdvice(temp, condition) {
     advice = "Жарко 🥵 — шорты, кепка и вода!";
   }
 
-  // добавляем учёт погоды
   if (condition === "Rain" || condition === "Drizzle" || condition === "Thunderstorm") {
     advice += " Не забудь зонт ☔.";
   } else if (condition === "Snow") {
@@ -58,17 +78,24 @@ function getClothingAdvice(temp, condition) {
   return advice;
 }
 
-
+// ================================
 // Текущая погода
+// ================================
 export function renderCurrentWeather(data) {
   window.currentWeather = data;
-  const now = new Date();
-  const formattedDate = now.toLocaleDateString("ru-RU", {
+
+  // вычисляем время города
+  const nowUTC = Date.now() + new Date().getTimezoneOffset() * 60000;
+  const cityTime = new Date(nowUTC + data.timezone * 1000);
+
+  const formattedDate = cityTime.toLocaleDateString("ru-RU", {
     day: "2-digit",
     month: "long",
     year: "numeric",
+    weekday: "long",
   });
-  const formattedTime = now.toLocaleTimeString("ru-RU", {
+
+  const formattedTime = cityTime.toLocaleTimeString("ru-RU", {
     hour: "2-digit",
     minute: "2-digit",
   });
@@ -81,15 +108,16 @@ export function renderCurrentWeather(data) {
   document.getElementById("weather_description").textContent = data.weather[0].description;
 
   // ставим иконку
-  setWeatherIcon(data.weather[0].main);
+  setWeatherIcon(data.weather[0].main, null, data);
 
   // совет по одежде 👇
   const advice = getClothingAdvice(Math.round(data.main.temp), data.weather[0].main);
   document.getElementById("weather_advice").textContent = advice;
 }
 
-
+// ================================
 // Отображение прогноза на 5 дней
+// ================================
 export function renderForecast(data) {
   window.forecastData = data;
   const daily = data.list
@@ -139,5 +167,3 @@ export function renderForecast(data) {
     container.appendChild(dayEl);
   });
 }
-
-

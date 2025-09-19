@@ -8,29 +8,27 @@ export function initModal() {
     return;
   }
 
-  function openModal() {
-    if (!window.currentWeather) {
+  // функция открытия с передачей данных
+  function openModal(weather, forecast) {
+    if (!weather) {
       console.warn("⚠️ Нет данных для отображения в модалке");
       return;
     }
 
-    const w = window.currentWeather;
-
     // Заполняем модалку
-    document.getElementById("modal-temp").textContent = `${Math.round(w.main.temp)}°C`;
-    document.getElementById("modal-feels").textContent = `${Math.round(w.main.feels_like)}°C`;
-    document.getElementById("modal-wind").textContent = `${w.wind.speed} м/с`;
-    document.getElementById("modal-humidity").textContent = `${w.main.humidity}%`;
-    document.getElementById("modal-pressure").textContent = `${w.main.pressure} гПа`;
+    document.getElementById("modal-temp").textContent = `${Math.round(weather.main.temp)}°C`;
+    document.getElementById("modal-feels").textContent = `${Math.round(weather.main.feels_like)}°C`;
+    document.getElementById("modal-wind").textContent = `${weather.wind.speed} м/с`;
+    document.getElementById("modal-humidity").textContent = `${weather.main.humidity}%`;
+    document.getElementById("modal-pressure").textContent = `${weather.main.pressure} гПа`;
 
-    // Почасовой прогноз (если есть forecastData)
+    // Почасовой прогноз
     const hourlyContainer = document.getElementById("modal-hourly");
     hourlyContainer.innerHTML = "";
 
-    if (window.forecastData) {
+    if (forecast) {
       const today = new Date().getDate();
-
-      const hours = window.forecastData.list.filter(item => {
+      const hours = forecast.list.filter(item => {
         const itemDate = new Date(item.dt_txt);
         return itemDate.getDate() === today;
       });
@@ -47,18 +45,21 @@ export function initModal() {
       });
     }
 
-   // modal.style.display = "block";
-   modal.classList.add('show');
+    modal.classList.add("show");
   }
 
   function closeModal() {
-   // modal.style.display = "none";
-   modal.classList.remove('show')
+    modal.classList.remove("show");
   }
 
-  moreDetails.addEventListener("click", openModal);
   btnClose.addEventListener("click", closeModal);
-  window.addEventListener("click", (e) => {
+  modal.addEventListener("click", (e) => {
     if (e.target === modal) closeModal();
   });
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+
+  // Возвращаем функцию, чтобы index.js мог открывать модалку с данными
+  return openModal;
 }

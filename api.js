@@ -21,13 +21,19 @@ export async function getForecast(lat, lon) {
   return response.json();
 }
 
-// /*для модалки подробный текущего дня*/
-// export async function getOneCallWeather(lat, lon) {
-//   const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&units=metric&lang=ru&appid=${apiKey}`;
-  
-//   const res = await fetch(url);
-//   if (!res.ok) throw new Error("Ошибка загрузки One Call API");
-//   return await res.json();
-// }
+/* Поиск координат по названию города */
+export async function getCoordsByCity(city) {
+  const response = await fetch(
+    `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`
+  );
+  if (!response.ok) throw new Error("Ошибка поиска города");
 
+  const data = await response.json();
+  if (!data.length) throw new Error("Город не найден");
 
+  return {
+    name: data[0].local_names?.ru || data[0].name,
+    lat: data[0].lat,
+    lon: data[0].lon
+  };
+}

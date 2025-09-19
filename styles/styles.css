@@ -53,7 +53,7 @@ body {
   background-position: center;
 }
 
-.date_time_.geo,
+.date_time_geo,
 .mini_weather {
   background-color: rgba(0, 0, 0, 0.4); /* чёрный с прозрачностью */
   color: #fff;                          /* текст остаётся читаемым */
@@ -61,6 +61,50 @@ body {
   border-radius: 10px;                  /* скруглённые углы */
   text-align: center;   /* выравнивание текста */
   width: 80%;
+}
+
+.date_time_geo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.search-city {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  gap: 10px;
+  height: 30px;
+}
+
+#city-input {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #fff;
+  font-size: 16px;
+  background: inherit;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 100%;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+#search-btn {
+  display: flex;
+  align-items: center;
+  background: #2a2a2a;
+  color: #000;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+  height: 100%;
+  border-radius: 3px;
+  outline: none;
+  border: none;
 }
 
 .mini_weather {
@@ -76,6 +120,10 @@ body {
 .weather_description {
   grid-column: 2 / 3;   /* 👉 второй столбец */
   grid-row: 3 / 4;      /* 👉 третья строка */
+}
+
+.weater_advice {
+  grid-column: ;
 }
 
 #date {
@@ -371,3 +419,4 @@ footer {
   from {opacity: 0; transform: translateY(-20px);}
   to {opacity: 1; transform: translateY(0);}
 }
+
