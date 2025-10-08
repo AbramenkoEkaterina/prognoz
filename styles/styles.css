@@ -122,9 +122,7 @@ body {
   grid-row: 3 / 4;      /* 👉 третья строка */
 }
 
-.weater_advice {
-  grid-column: ;
-}
+
 
 #date {
   font-weight: bold;   /* делаем жирным */
