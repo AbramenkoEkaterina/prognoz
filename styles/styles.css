@@ -1,7 +1,9 @@
 body {
   min-inline-size: 320px;
-  margin: 0;
+  margin: 0 auto;
   width: 100%;
+  max-width: 430px;
+
   font-family: sans-serif;
   background: linear-gradient(
     90deg,
@@ -317,25 +319,18 @@ footer {
   display: none; /* скрыто по умолчанию */
   position: fixed;
   z-index: 1000;
-  left: 0;
-  top: 0;
   width: 100%;
+  max-width: 430px;
+  margin: auto;
   height: 100%;
   overflow-y: auto;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(222, 230, 230, 0.3);
 }
 
 /* содержимое модалки */
 /* Фон модалки */
 .modal {
-  position: fixed;
-  z-index: 1000; 
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(222, 230, 230, 0.3);
-
+  
   display: flex;           /* flex для центрирования */
   justify-content: center; /* по горизонтали */
   align-items: center;     /* по вертикали */
