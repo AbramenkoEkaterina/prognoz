@@ -262,75 +262,75 @@ footer {
 
 /*ясно*/
 .clear {
-  background-image: url("../svg/sun.svg");
+  background-image: url("./svg/sun.svg");
 }
 
 /*гроза*/
 .thunderstorm {
-  background-image: url("../svg/thunder.svg");
+  background-image: url("./svg/thunder.svg");
 }
 
 /*морозь*/
 .drizzle {
-  background-image: url("../svg/drizzle.svg");
+  background-image: url("./svg/drizzle.svg");
 }
 
 /*дождь*/
 .rain {
-  background-image: url("../svg/rain.svg");
+  background-image: url("./svg/rain.svg");
 }
 
 /*снег*/
 .snow {
-  background-image: url("../svg/snow.svg");
+  background-image: url("./svg/snow.svg");
 }
 
 /*дымка*/
 .mist {
-  background-image: url("../svg/fog.svg");
+  background-image: url("./svg/fog.svg");
 }
 
 /*смог*/
 .smoke {
-  background-image: url("../svg/fog.svg");
+  background-image: url("./svg/fog.svg");
 }
 
 /*туман*/
 .fog {
-  background-image: url("../svg/fog.svg");
+  background-image: url("./svg/fog.svg");
 }
 
 /*песок*/
 .sunny {
-  background-image: url("../svg/sun.svg");
+  background-image: url("./svg/sun.svg");
 }
 
 /*шквал*/
 .squall {
-  background-image: url("../svg/wind.svg");
+  background-image: url("./svg/wind.svg");
 }
 
 /*облачно*/
 .clouds {
-  background-image: url("../svg/partly_cloudy.svg");
+  background-image: url("./svg/partly_cloudy.svg");
 }
 
 /*торнадо*/
 .tornado {
-  background-image: url("../svg/wind.svg");
+  background-image: url("./svg/wind.svg");
 }
 
 /*град*/
 .hail {
-  background-image: url("../svg/hail.svg");
+  background-image: url("./svg/hail.svg");
 }
 
 .default {
-  background-image: url("../svg/cloud.svg");
+  background-image: url("./svg/cloud.svg");
 }
 
 .moon {
-  background-image: url("../svg/moon.svg");
+  background-image: url("./svg/moon.svg");
 }
 
 
