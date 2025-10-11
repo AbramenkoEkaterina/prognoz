@@ -3,6 +3,26 @@ import { getCoords } from "./geolocation.js";
 import { renderCurrentWeather, renderForecast } from "./ui.js";
 import { initModal } from "./modal.js";
 
+
+const toggleBtn = document.getElementById("toggle-search");
+const searchPanel = document.getElementById("search-panel");
+const searchBtn = document.getElementById("search-btn");
+const cityInput = document.getElementById("city-input");
+
+toggleBtn.addEventListener("click", () => {
+  searchPanel.classList.toggle("hidden");
+});
+
+searchBtn.addEventListener("click", async () => {
+  const city = cityInput.value.trim();
+  if (!city) return alert("Введите название города!");
+
+  const weather = await getWeather(city);
+  renderCurrentWeather(weather);
+  searchPanel.classList.add("hidden");
+});
+
+
 const openModal = initModal(); // теперь есть функция открытия
 
 // включаем поиск по городу СРАЗУ

@@ -1,5 +1,5 @@
 //работа с координатами
-
+//встроенный объект, позволяет узнать метоположение через gps, wi-fi, ip
 export function getCoords() {
   return new Promise((resolve, reject) => {
     if (!navigator.geolocation) {
